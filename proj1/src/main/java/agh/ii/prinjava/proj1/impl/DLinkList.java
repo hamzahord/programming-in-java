@@ -22,7 +22,7 @@ public class DLinkList<E> {
         }
         else {
             n_node.next = this.head;
-            this.head = n_node;
+            this.head.prev = n_node;
         }
     }
 
