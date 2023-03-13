@@ -4,6 +4,11 @@ import agh.ii.prinjava.lab03.exc03_01.QueueOfInts;
 
 public class LinkedListBasedImpl implements QueueOfInts {
 
+    /**
+     * @param x the element to be added in the queue
+     * the function add an element in a queue as first if empty queue
+     * the function add an element in a queue as last otherwise
+     */
     @Override
     public void enqueue(int x) {
         Node queue = new Node(x);
@@ -17,6 +22,11 @@ public class LinkedListBasedImpl implements QueueOfInts {
         this.numOfElems++;
     }
 
+    /**
+     * @return the popped element
+     * @throws Exception handles the case when the queue is empty
+     * the function pops the first element of a queue
+     */
     @Override
     public int dequeue() throws Exception{
         if (this.first == null){
@@ -30,14 +40,24 @@ public class LinkedListBasedImpl implements QueueOfInts {
         return res;
     }
 
+    /**
+     * @return the number of elements of a queue
+     */
     @Override
     public int numOfElems() {
         return this.numOfElems;
     }
 
+    /**
+     * @return the element that is going to be popped
+     * @throws Exception handles the case when a queue is empty
+     */
     @Override
-    public int peek() {
-        throw new IllegalStateException("To be implemented");
+    public int peek() throws Exception {
+        if (this.first == null)
+            throw new Exception("Empty queue, nothing is going to be popped ");
+        else
+            return this.first.elem;
     }
 
     private static class Node {
@@ -58,6 +78,5 @@ public class LinkedListBasedImpl implements QueueOfInts {
 
     private Node first = null;
     private Node last = null;
-
     private int numOfElems = 0;
 }

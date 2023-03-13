@@ -11,5 +11,5 @@ public interface QueueOfInts {
 
     int numOfElems();
 
-    int peek();
+    int peek() throws Exception;
 }
