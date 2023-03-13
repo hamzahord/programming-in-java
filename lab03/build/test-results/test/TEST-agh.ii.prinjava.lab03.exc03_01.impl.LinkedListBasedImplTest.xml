@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="agh.ii.prinjava.lab03.exc03_01.impl.LinkedListBasedImplTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-03-13T14:00:53" hostname="HAMZALAPTOP" time="0.032">
+  <properties/>
+  <testcase name="DeQueueEmptyQueue()" classname="agh.ii.prinjava.lab03.exc03_01.impl.LinkedListBasedImplTest" time="0.023"/>
+  <testcase name="testingEnqueueAndDequeue()" classname="agh.ii.prinjava.lab03.exc03_01.impl.LinkedListBasedImplTest" time="0.005"/>
+  <testcase name="newQueueIsEmpty()" classname="agh.ii.prinjava.lab03.exc03_01.impl.LinkedListBasedImplTest" time="0.002"/>
+  <testcase name="testNumOfelementsInQueue()" classname="agh.ii.prinjava.lab03.exc03_01.impl.LinkedListBasedImplTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
