@@ -1,4 +1,4 @@
-package org.example;
+package pl.edu.agh.ii;
 
 public class Main {
     public static void main(String[] args) {
