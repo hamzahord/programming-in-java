@@ -1,61 +1,126 @@
 package agh.ii.prinjava.proj1.impl;
 
 public class DLinkList<E> {
-    // ...
-    private static class Node<T> {
+    /**
+     * Inner Class Node
+     */
+    public static class Node<T> {
         T elem;
         Node<T> next;
         Node<T> prev;
-        Node(T elem){
+
+        /**
+         * Constructor
+         */
+        Node(T elem) {
             this.elem = elem;
             this.next = null;
             this.prev = null;
         }
     }
 
+    Node<E> head; //head of the list
+    Node<E> tail; //tail of the list
+
+    /**
+     * Methods of the class
+     */
+
+    //add a node in the beginning of the list
     public void addFirst(E x) {
-        Node<E> n_node = new Node(x);
+        Node<E> n_node = new Node<>(x);
         n_node.next = null;
         //if list is empty
         if (this.head == null) {
             this.head = n_node;
-        }
-        else {
-            n_node.next = this.head;
-            this.head.prev = n_node;
+            this.tail = this.head;
+        } else {
+            Node<E> temp = this.head;//creating temporary node to keep values of head
+            this.head = n_node;
+            temp.prev = n_node;
+            n_node.next = temp;
+            if (this.head.next != null && this.head.next.next == null) {
+                this.tail = this.head.next;
+            }
         }
     }
 
+    //add a node at the end of the list
     public void addLast(E x) {
-        Node<E> n_node = new Node(x);
+        Node<E> n_node = new Node<>(x);
         n_node.next = null;
         //if list is empty
         if (this.head == null) {
             this.head = n_node;
-        }
-        else {
-            Node last = this.head;
-            while (last.next != null){
+            this.tail = this.head;
+        } else {
+            Node<E> last = this.head;
+            while (last.next != null) {
                 last = last.next;
             }
             last.next = n_node;
+            this.tail = n_node;
         }
     }
 
-    public E removeFirst(){
-        //TODO
-        throw new IllegalStateException("To be implemented");
+    //remove first node of the list
+    public void removeFirst() {
+        //if list empty
+        if (this.head == null) {
+            System.out.println("List is already empty");
+        } else {
+            //if there's only one value in the list
+            if (this.head.next == null) {
+                this.head = null;//deleting only node
+                this.tail = null;
+            } else {
+                this.head = this.head.next;
+                this.head.prev = null;
+            }
+        }
     }
 
-    public E removeLast(){
-        //TODO
-        throw new IllegalStateException("to be done");
+    //remove last node of the list
+    public void removeLast() {
+        //if list is empty
+        if (this.head == null) {
+            System.out.println("List is already empty");
+        } else {
+            Node<E> temp = this.head;
+            //running through the list until it's before final node
+            while (temp.next.next != null) {
+                temp = temp.next;
+            }
+            this.tail = temp;
+            temp.next = null;//deleting last node
+        }
+
     }
 
+    /**
+     * Overriding class Object method toString to display Linked List as such :
+     * Example : "1"
+     * Example 2 : "1-->2-->3-->6"
+     * Example 3 : "List is empty"
+     */
+
+    @Override
     public String toString() {
-        //TODO
-        throw new IllegalStateException("to be done with");
+        StringBuilder res = new StringBuilder();
+        //if list is empty
+        if (this.head == null) {
+            return "List is empty";
+        } else {
+            res.append(this.head.elem);//adding the head of the list in the stirng
+            Node<E> temp = this.head;
+            //running through every values of the list
+            while (temp.next != null) {
+                res.append("-->");
+                res.append(temp.next.elem);//concatenating string with current value
+                temp = temp.next;
+            }
+            return res.toString();
+        }
     }
 
-    Node head; //head of the list
 }
