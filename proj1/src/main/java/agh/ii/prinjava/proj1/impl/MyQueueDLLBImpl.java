@@ -6,7 +6,7 @@ public class MyQueueDLLBImpl<E> implements MyQueue<E> {
     /**
      * the DlinkedList that is going to be implemented as a Queue.
      */
-    private DLinkList<E> elems = new DLinkList<>();
+    private final DLinkList<E> elems = new DLinkList<>();
 
     /**
      * The goal of the function is to enqueue an element in a queue.

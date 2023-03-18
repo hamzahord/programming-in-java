@@ -6,7 +6,7 @@ public class MyStackDLLBImpl<E> implements MyStack<E> {
     /**
      * the DlinkedList that is going to be implemented as a Stack.
      */
-    private DLinkList<E> elems = new DLinkList<>();
+    private final DLinkList<E> elems = new DLinkList<>();
 
     /**
      * the goal of the function is to pop an element from a stack.
