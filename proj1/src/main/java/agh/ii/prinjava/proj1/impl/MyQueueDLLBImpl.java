@@ -22,6 +22,8 @@ public class MyQueueDLLBImpl<E> implements MyQueue<E> {
      */
     @Override
     public E dequeue() {
+        if (elems.head == null)
+            throw new IllegalArgumentException();
         E res = elems.tail.elem;
         elems.removeLast();
         return res;
@@ -44,6 +46,8 @@ public class MyQueueDLLBImpl<E> implements MyQueue<E> {
      */
     @Override
     public E peek() {
+        if (elems.head == null)
+            throw new IllegalArgumentException();
         return this.elems.tail.elem;
     }
 }

@@ -74,7 +74,7 @@ public class DLinkList<E> {
     public void removeFirst() {
         //if list empty
         if (this.head == null) {
-            System.out.println("List is already empty");
+            throw new IllegalArgumentException();
         } else {
             //if there's only one value in the list
             if (this.head.next == null) {
@@ -91,16 +91,19 @@ public class DLinkList<E> {
     //remove last node of the list
     public void removeLast() {
         //if list is empty
-        if (this.head == null) {
-            System.out.println("List is already empty");
-        } else {
+        if (this.head == null ) {
+            throw new IllegalArgumentException();
+        }
+        if (this.head.next == null)
+            this.head = null;
+        else {
             Node<E> temp = this.head;
             //running through the list until it's before final node
             while (temp.next.next != null) {
                 temp = temp.next;
             }
-            this.tail = temp;
-            temp.next = null;//deleting last node
+            this.tail = tail.prev;
+            this.tail.next = null;//deleting last node
         }
         this.size--;
     }

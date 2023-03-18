@@ -12,6 +12,8 @@ public class MyStackDLLBImpl<E> implements MyStack<E> {
      */
     @Override
     public E pop() {
+        if (elems.head == null)
+            throw new IllegalArgumentException();
         E res = elems.head.elem;
         elems.removeFirst();
         return res;
@@ -45,6 +47,8 @@ public class MyStackDLLBImpl<E> implements MyStack<E> {
      */
     @Override
     public E peek() {
+        if (elems.head == null)
+            throw new IllegalArgumentException();
         return elems.head.elem;
     }
 }
