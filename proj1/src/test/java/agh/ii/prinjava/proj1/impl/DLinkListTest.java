@@ -20,6 +20,12 @@ class DLinkListTest {
     }
 
     @Test
+    void testRemoveFromEmptyDLinkedList(){
+        assertThrows(IllegalArgumentException.class, () -> dLinkList.removeFirst());
+        assertThrows(IllegalArgumentException.class, () -> dLinkList.removeLast());
+    }
+
+    @Test
     public void addFirstTest() {
         assertNull(dLinkList.head);//checking if list is null
         dLinkList.addFirst(1);

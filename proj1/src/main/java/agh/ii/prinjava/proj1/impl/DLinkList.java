@@ -102,8 +102,8 @@ public class DLinkList<E> {
             while (temp.next.next != null) {
                 temp = temp.next;
             }
-            this.tail = tail.prev;
-            this.tail.next = null;//deleting last node
+            this.tail = temp;
+            temp.next = null;//deleting last node
         }
         this.size--;
     }
