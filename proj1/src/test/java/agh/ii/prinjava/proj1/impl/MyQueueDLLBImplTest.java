@@ -28,7 +28,7 @@ class MyQueueDLLBImplTest {
 
     @Test
     void testDequeueEmptyQueue(){
-        assertThrows(IllegalArgumentException.class, () -> queueOfInts.dequeue());
+        assertThrows(IllegalArgumentException.class, queueOfInts::dequeue);
     }
 
     @Test
@@ -65,7 +65,7 @@ class MyQueueDLLBImplTest {
 
     @Test
     void testPeekOnEmptyQueue(){
-        assertThrows(IllegalArgumentException.class, () -> queueOfInts.peek());
+        assertThrows(IllegalArgumentException.class, queueOfInts::peek);
     }
 
     @Test

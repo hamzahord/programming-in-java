@@ -3,6 +3,9 @@ package agh.ii.prinjava.proj1.impl;
 import agh.ii.prinjava.proj1.MyQueue;
 
 public class MyQueueDLLBImpl<E> implements MyQueue<E> {
+    /**
+     * the DlinkedList that is going to be implemented as a Queue.
+     */
     private DLinkList<E> elems = new DLinkList<>();
 
     /**

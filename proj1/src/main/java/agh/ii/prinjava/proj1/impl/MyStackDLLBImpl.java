@@ -3,6 +3,9 @@ package agh.ii.prinjava.proj1.impl;
 import agh.ii.prinjava.proj1.MyStack;
 
 public class MyStackDLLBImpl<E> implements MyStack<E> {
+    /**
+     * the DlinkedList that is going to be implemented as a Stack.
+     */
     private DLinkList<E> elems = new DLinkList<>();
 
     /**
