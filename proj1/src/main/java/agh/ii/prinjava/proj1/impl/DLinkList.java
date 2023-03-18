@@ -12,15 +12,20 @@ public class DLinkList<E> {
         /**
          * Constructor
          */
-        Node(T elem) {
+        public Node(T elem) {
             this.elem = elem;
-            this.next = null;
-            this.prev = null;
+        }
+
+        public Node(T elem, Node next, Node prev) {
+            this.elem = elem;
+            this.next = next;
+            this.prev = prev;
         }
     }
 
     Node<E> head; //head of the list
     Node<E> tail; //tail of the list
+    public int size = 0;
 
     /**
      * Methods of the class
@@ -43,6 +48,7 @@ public class DLinkList<E> {
                 this.tail = this.head.next;
             }
         }
+        this.size++;
     }
 
     //add a node at the end of the list
@@ -61,6 +67,7 @@ public class DLinkList<E> {
             last.next = n_node;
             this.tail = n_node;
         }
+        this.size++;
     }
 
     //remove first node of the list
@@ -78,6 +85,7 @@ public class DLinkList<E> {
                 this.head.prev = null;
             }
         }
+        this.size--;
     }
 
     //remove last node of the list
@@ -94,7 +102,7 @@ public class DLinkList<E> {
             this.tail = temp;
             temp.next = null;//deleting last node
         }
-
+        this.size--;
     }
 
     /**
