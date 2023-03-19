@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyQueueDLLBImplTest {
+    /**
+     * Queues that will be used for testing.
+     */
     private final MyQueue<Integer> queueOfInts = MyQueue.create();
     private final MyQueue<String> queueofStrings = MyQueue.create();
     private final MyQueue<Double> queueOfDoubles = MyQueue.create();
@@ -21,16 +24,25 @@ class MyQueueDLLBImplTest {
     void tearDown() {
     }
 
+    /**
+     * testing empty Queue.
+     */
     @Test
     void testEmptyQueue(){
         assertTrue(queueOfInts.isEmpty());
     }
 
+    /**
+     * testing handling Exception when trying to dequeue from empty Queue.
+     */
     @Test
     void testDequeueEmptyQueue(){
         assertThrows(IllegalArgumentException.class, queueOfInts::dequeue);
     }
 
+    /**
+     * testing enqueue and dequeue from a Queue.
+     */
     @Test
     void testEnqueueAndDequeue(){
         queueofStrings.enqueue("first to be added");
@@ -47,6 +59,9 @@ class MyQueueDLLBImplTest {
         assertEquals("fourth to be added", tmp);
     }
 
+    /**
+     * testing number of elements in a Queue.
+     */
     @Test
     void testNumberOfElements(){
         queueOfDoubles.enqueue(42.42);
@@ -63,11 +78,17 @@ class MyQueueDLLBImplTest {
         assertEquals(3, queueOfDoubles.numOfElems());
     }
 
+    /**
+     * testing handling Exception when peeking an empty Queue.
+     */
     @Test
     void testPeekOnEmptyQueue(){
         assertThrows(IllegalArgumentException.class, queueOfInts::peek);
     }
 
+    /**
+     * testing peeking a Queue.
+     */
     @Test
     void testPeekOfQueue(){
         queueOfChars.enqueue('1');

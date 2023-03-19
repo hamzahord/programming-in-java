@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyStackDLLBImplTest {
+    /**
+     * Stacks that will be used for testing.
+     */
     MyStack<Integer> stackOfInts = MyStack.create();
     MyStack<Double> stackOfDoubles = MyStack.create();
     MyStack<String> stackOfStrings = MyStack.create();
@@ -21,16 +24,25 @@ class MyStackDLLBImplTest {
     void tearDown() {
     }
 
+    /**
+     * testing empty Stack.
+     */
     @Test
-    void testEmptyQueue(){
+    void testEmptyStack(){
         assertTrue(stackOfInts.isEmpty());
     }
 
+    /**
+     * testing handling Exception when trying to pop from empty Stack.
+     */
     @Test
-    void testPopFromEmptyQueue(){
+    void testPopFromEmptyStack(){
         assertThrows(IllegalArgumentException.class, () -> stackOfInts.pop());
     }
 
+    /**
+     * testing pushing and popping from a Stack.
+     */
     @Test
     void testPushAndPop(){
         stackOfDoubles.push(2.5);
@@ -47,6 +59,9 @@ class MyStackDLLBImplTest {
         assertEquals(2.5, tmp);
     }
 
+    /**
+     * testing number of elements in a Stack.
+     */
     @Test
     void testNumberOfElements(){
         stackOfStrings.push("the first to be added in stack");
@@ -64,11 +79,17 @@ class MyStackDLLBImplTest {
         assertEquals(4, stackOfStrings.numOfElems());
     }
 
+    /**
+     * testing handling Exception when peeking an empty Stack.
+     */
     @Test
     void testPeekOnEmptyStack(){
         assertThrows(IllegalArgumentException.class, () -> stackOfInts.peek());
     }
 
+    /**
+     * testing peeking a Stack.
+     */
     @Test
     void testPeekOfStack(){
         stackOfChars.push('1');

@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DLinkListTest {
-    //creating empty Doubled Linked List that we will use in every test
+    /**
+     * creating empty Doubled Linked List that we will use in every test
+     */
     DLinkList<Integer> dLinkList = new DLinkList<>();
 
 
@@ -19,12 +21,18 @@ class DLinkListTest {
     void tearDown() {
     }
 
+    /**
+     * testing handling Exception from removing elements from empty DLinkedList
+     */
     @Test
     void testRemoveFromEmptyDLinkedList(){
         assertThrows(IllegalArgumentException.class, () -> dLinkList.removeFirst());
         assertThrows(IllegalArgumentException.class, () -> dLinkList.removeLast());
     }
 
+    /**
+     * testing adding elements in the front of the DLL.
+     */
     @Test
     public void addFirstTest() {
         assertNull(dLinkList.head);//checking if list is null
@@ -34,6 +42,9 @@ class DLinkListTest {
         assertNotNull(dLinkList.head);
     }
 
+    /**
+     * testing adding elements in the front of the DLL.
+     */
     @Test
     public void addFirstTest2(){
         dLinkList.addFirst(1);
@@ -43,6 +54,9 @@ class DLinkListTest {
         assertEquals(dLinkList.tail.elem, 1);//checking last value is 1
     }
 
+    /**
+     * testing adding elements as the last element of the DLL.
+     */
     @Test
     public void addLastTest() {
         dLinkList.addFirst(2);
@@ -51,6 +65,9 @@ class DLinkListTest {
         assertEquals(dLinkList.tail.elem, 6);//checking that last value is 6
     }
 
+    /**
+     * testing removing the first element of the DLL.
+     */
     @Test
     public void removeFirstTest(){
         dLinkList.addFirst(2);
@@ -62,6 +79,9 @@ class DLinkListTest {
         assertNull(dLinkList.tail);
     }
 
+    /**
+     * testing removing the last element of the DLL
+     */
     @Test
     public void removeLastTest(){
         dLinkList.addFirst(5);
@@ -72,6 +92,9 @@ class DLinkListTest {
         assertEquals(dLinkList.tail.elem, 5);//checking that there's no more a third value in the list
     }
 
+    /**
+     * testing toString function.
+     */
     @Test
     public void toStringTest(){
         //checking that method toString() displays Doubled Linked List as expected

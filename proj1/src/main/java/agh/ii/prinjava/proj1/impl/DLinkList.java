@@ -16,22 +16,27 @@ public class DLinkList<E> {
             this.elem = elem;
         }
 
-        public Node(T elem, Node next, Node prev) {
+        /*public Node(T elem, Node next, Node prev) {
             this.elem = elem;
             this.next = next;
             this.prev = prev;
-        }
+        }*/
     }
 
     Node<E> head; //head of the list
     Node<E> tail; //tail of the list
-    public int size = 0;
+    public int size = 0; //size of the list
 
     /**
      * Methods of the class
      */
 
-    //add a node in the beginning of the list
+
+
+    /**
+     * the goal of the function is to add an element in the first place of the DLinkedList.
+     * @param x is the element to be added in the first place of the DLL.
+     */
     public void addFirst(E x) {
         Node<E> n_node = new Node<>(x);
         n_node.next = null;
@@ -48,10 +53,14 @@ public class DLinkList<E> {
                 this.tail = this.head.next;
             }
         }
+        //the size increases by one
         this.size++;
     }
 
-    //add a node at the end of the list
+    /**
+     * the goal of the function is to add an element at the end of the DLL.
+     * @param x is the element to be added at the end of the DLL.
+     */
     public void addLast(E x) {
         Node<E> n_node = new Node<>(x);
         n_node.next = null;
@@ -67,10 +76,14 @@ public class DLinkList<E> {
             last.next = n_node;
             this.tail = n_node;
         }
+        //the size increases by one
         this.size++;
     }
 
-    //remove first node of the list
+
+    /**
+     * the goal of the function is to remove the first element of a DLL.
+     */
     public void removeFirst() {
         //if list empty
         if (this.head == null) {
@@ -85,10 +98,13 @@ public class DLinkList<E> {
                 this.head.prev = null;
             }
         }
+        //the size decreases by one
         this.size--;
     }
 
-    //remove last node of the list
+    /**
+     * the goal of the function is to remove the last element of a DLL.
+     */
     public void removeLast() {
         //if list is empty
         if (this.head == null ) {
@@ -105,6 +121,7 @@ public class DLinkList<E> {
             this.tail = temp;
             temp.next = null;//deleting last node
         }
+        //the size decreases by one
         this.size--;
     }
 
@@ -113,8 +130,8 @@ public class DLinkList<E> {
      * Example : "1"
      * Example 2 : "1-->2-->3-->6"
      * Example 3 : "List is empty"
+     * @return the DLinkedList as a String
      */
-
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
