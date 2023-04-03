@@ -1,4 +1,4 @@
-package agh.ii.prinjava.lab05.lst05_05;
+package agh.ii.prinjava.lab05.lst05_06;
 import java.io.*;
 import java.util.*;
 
