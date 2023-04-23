@@ -93,10 +93,9 @@ interface PlayWithMovies {
      */
     static Map<String, Long> ex06() {
         List<Movie> movies = ImdbTop250.movies().orElse(Collections.emptyList());
-        Map<String, Long> actorMovies = movies.stream()
+        return movies.stream()
                 .flatMap(movie -> movie.actors().stream())
                 .collect(Collectors.groupingBy(actor -> actor, Collectors.counting()));
-        return actorMovies;
     }
 
     /**
@@ -124,7 +123,26 @@ interface PlayWithMovies {
      * Returns the movies (only titles) of each of the 5 most frequent actor partnerships
      */
     static Map<String, Set<String>> ex10() {
-        throw new RuntimeException("ex10 is not implemented!");
+        return ImdbTop250.movies()
+                .orElseThrow()
+                .stream()
+                .flatMap(movie -> {
+                    List<String> actors = movie.actors();
+                    return actors.stream().flatMap(a1 ->
+                            actors.stream().filter(a2 -> !a1.equals(a2))
+                                    .map(a2 -> new AbstractMap.SimpleEntry<>(Arrays.asList(a1, a2), movie.title())));
+                })
+                .collect(Collectors.groupingBy(
+                        entry -> entry.getKey().stream().sorted().collect(Collectors.toList()),
+                        Collectors.groupingBy(Map.Entry::getValue, Collectors.toSet())
+                ))
+                .entrySet().stream()
+                .sorted((e1, e2) -> Long.compare(e2.getValue().size(), e1.getValue().size()))
+                .limit(5)
+                .collect(Collectors.toMap(
+                        entry -> String.join(", ", entry.getKey()),
+                        entry -> entry.getValue().keySet()
+                ));
     }
 }
 
