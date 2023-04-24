@@ -4,7 +4,10 @@ import agh.ii.prinjava.proj2.dal.ImdbTop250;
 import agh.ii.prinjava.proj2.model.Movie;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 interface PlayWithMovies {
 
@@ -102,21 +105,62 @@ interface PlayWithMovies {
      * Returns the 9 actors with the most films on the list
      */
     static Map<String, Long> ex07() {
-        throw new RuntimeException("ex07 is not implemented!");
+        Optional<List<Movie>> movies = ImdbTop250.movies();
+        if (movies.isEmpty()) {
+            return Collections.emptyMap();
+        }
+
+        return movies.get().stream()
+                .flatMap(m -> m.actors().stream())
+                .collect(Collectors.groupingBy(d -> d, Collectors.counting()))
+                .entrySet().stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .limit(9)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> v1, LinkedHashMap::new));
     }
 
     /**
      * Returns the movies (only titles) of each of the 9 actors from {@link PlayWithMovies#ex07 ex07}
      */
     static Map<String, Set<String>> ex08() {
-        throw new RuntimeException("ex08 is not implemented!");
+        List<Movie> movies = ImdbTop250.movies().orElse(Collections.emptyList());
+        Map<String, Long> topActors = ex07();
+
+        return topActors.keySet().stream().collect(Collectors.toMap(
+                Function.identity(),
+                actor -> movies.stream()
+                        .filter(movie -> movie.actors().contains(actor))
+                        .map(Movie::title)
+                        .collect(Collectors.toSet())
+        ));
     }
 
     /**
      * Returns the 5 most frequent actor partnerships (i.e., appearing together most often)
      */
     static Map<String, Long> ex09() {
-        throw new RuntimeException("ex08 is not implemented!");
+        Optional<List<Movie>> movies = ImdbTop250.movies();
+        if (movies.isEmpty()) {
+            return Collections.emptyMap();
+        }
+
+        Map<String, Long> actorPairCount = movies.get().stream()
+                .flatMap(movie -> {
+                    List<String> actors = movie.actors();
+                    return IntStream.range(0, actors.size())
+                            .mapToObj(i -> new AbstractMap.SimpleEntry<>(actors.get(i), actors.subList(i + 1, actors.size())));
+                })
+                .flatMap(pair -> pair.getValue().stream()
+                        .map(actor -> {
+                            String key = Stream.of(pair.getKey(), actor).sorted().collect(Collectors.joining(", "));
+                            return new AbstractMap.SimpleEntry<>(key, 1L);
+                        }))
+                .collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.summingLong(Map.Entry::getValue)));
+
+        return actorPairCount.entrySet().stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey()))
+                .limit(5)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> v1, LinkedHashMap::new));
     }
 
     /**
